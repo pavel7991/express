@@ -1,0 +1,20 @@
+<%- include('./partials/head') %>
+<%- include('./components/hero') %>
+
+<div class="container">
+    <% if(userData) { %>
+        <%- include('./components/userCard') %>
+    <% } else { %>
+        <div class="user-notFound">
+            <h2>User not Found</h2>
+            <a href="/" class="btn">Back to all users</a>
+        </div>
+    <% } %>
+</div>
+
+<%- include('./partials/foot') %>
+
+
+
+
+

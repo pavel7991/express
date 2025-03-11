@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "prettier-plugin-ejs"
+  ],
+  "useTabs": true,
+  // Использовать табы вместо пробелов
+  "tabWidth": 2,
+  "semi": false,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "printWidth": 120
+}

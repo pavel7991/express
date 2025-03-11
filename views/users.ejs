@@ -1,0 +1,16 @@
+<%- include('./partials/head') %>
+
+<div class="container">
+    <h1>All Users!!!</h1>
+
+    <% usersList.map((user) => { %>
+        <div class="row-user">
+            <span><%= user.id %>.</span>
+            <p><%= user.name %></p>
+            <a href="/users/<%= user.id %>" class="row-user__view-profile">View Profile</a>
+        </div>
+    <% }) %>
+    <div><a href="/users/add-new-user" class="btn">Add new user</a></div>
+</div>
+
+<%- include('./partials/foot') %>
