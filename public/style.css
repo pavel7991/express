@@ -114,6 +114,22 @@ h1 {
     background-color: #c0392b;
 }
 
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
 /* Footer */
 footer {
     background-color: #333;
@@ -125,13 +141,22 @@ footer {
 
 .row-user {
     border-radius: 5px;
-    background: #f4f4f4;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     margin-bottom: 10px;
     align-items: center;
     gap: 15px;
+    background: #fff;
+}
+
+.row-user__name {
+    text-decoration: none;
+    color: inherit;
+}
+
+.row-user__name:hover {
+    text-decoration: underline;
 }
 
 .row-user__view-profile {
@@ -157,19 +182,21 @@ footer {
     margin-top: 50px;
 }
 
+.user-card__panel-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.user-card__panel-buttons button {
+    min-width: 250px;
+}
+
 .user-card__avatar {
     border-radius: 50%;
     width: 100%;
 }
 
-.user-card p {
-    font-size: 1.2rem;
-}
-
-.user-card p span {
-    font-size: 1rem;
-    font-weight: bold;
-}
 
 .user-notFound {
     text-align: center;
@@ -229,4 +256,43 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.all-users-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.success {
+    color: green;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.success a {
+    color: #3498db;
+    transition: 0.3s ease-out;
+}
+
+.success a:hover {
+    color: blue;
+}
+
+.photo-sm {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }

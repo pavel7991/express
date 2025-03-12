@@ -1,0 +1,11 @@
+<%- include('./partials/head') %>
+<%- include('./components/hero') %>
+
+<div class="container text-center">
+
+    <p class="success">Success add, <a href="/users/<%- newUser.id %>"><%= newUser.name %></a></p>
+
+    <a href="/users" class="btn">Back to all users</a>
+</div>
+
+<%- include('./partials/foot') %>

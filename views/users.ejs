@@ -1,16 +1,21 @@
 <%- include('./partials/head') %>
 
 <div class="container">
-    <h1>All Users!!!</h1>
+    <div class="all-users-head">
+        <h1>All Users!!!</h1>
+        <a href="/users/add-new-user" class="btn">Add new user</a>
+    </div>
 
-    <% usersList.map((user) => { %>
+    <% usersList.map((user, index) => { %>
         <div class="row-user">
-            <span><%= user.id %>.</span>
-            <p><%= user.name %></p>
+            <span><%= ++index %>.</span>
+            <% const avatarImg = (user.avatar != '' ? user.avatar : '/image/no-image.jpeg') %>
+            <img src="<%= avatarImg %>" alt="user.name" class="photo-sm">
+            <p><a href="/users/<%= user.id %>" class="row-user__name"><%= user.name %></a></p>
             <a href="/users/<%= user.id %>" class="row-user__view-profile">View Profile</a>
         </div>
     <% }) %>
-    <div><a href="/users/add-new-user" class="btn">Add new user</a></div>
 </div>
+
 
 <%- include('./partials/foot') %>

@@ -1,9 +1,11 @@
 import express from 'express'
 import {
+	deleteUserByIdHandler,
 	getAddNewUserHandler,
 	getUserByIdHandler,
 	getUsersHandler,
-	postAddNewUserHandler
+	postAddNewUserHandler,
+	updateUserHandler
 } from '../controllers/users.mjs'
 
 const usersRouter = express.Router()
@@ -17,6 +19,8 @@ usersRouter.route('/add-new-user')
 
 usersRouter.route('/:userId')
 	.get(getUserByIdHandler)
+	.delete(deleteUserByIdHandler)
+	.put(updateUserHandler)
 
 
 export default usersRouter

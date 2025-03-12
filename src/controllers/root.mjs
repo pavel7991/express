@@ -1,3 +1,3 @@
 export const getRootHandler = (req, res) => {
-  res.render('index', { title: 'Home', currentPage: 'home'})
+	res.render('index', { title: 'Home', currentPage: 'home' })
 }

@@ -1,3 +1,7 @@
+export const counter = {
+	id: 10
+}
+
 export const dataUsers = [
 	{
 		'id': 1,
