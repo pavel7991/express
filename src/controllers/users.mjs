@@ -1,6 +1,6 @@
 import { counter, dataUsers } from '../data/users.mjs'
 import { log } from '../config/logger.mjs'
-import { deleteUserDataById, findUsersById } from '../untils.mjs'
+import { findObjectById, removeObjectById } from '../utils/arrayUtils.mjs'
 
 // users
 export const getUsersHandler = (req, res) => {
@@ -10,7 +10,7 @@ export const getUsersHandler = (req, res) => {
 // users/userId
 export const getUserByIdHandler = (req, res) => {
 	const { userId } = req.params
-	const userData = findUsersById(dataUsers, userId)
+	const userData = findObjectById(dataUsers, userId)
 
 	res.render('user', { title: `User ${userId} `, currentPage: 'users', userData })
 }
@@ -19,7 +19,7 @@ export const getUserByIdHandler = (req, res) => {
 export const deleteUserByIdHandler = (req, res) => {
 	const { userId } = req.params
 
-	deleteUserDataById(dataUsers, userId)
+	removeObjectById(dataUsers, userId)
 	log('User deleted', 'red')
 	res.status(200).json({ message: `User by id:${userId} was remove` })
 }
@@ -29,7 +29,7 @@ export const updateUserHandler = (req, res) => {
 	const { userId } = req.params
 	const dataFromForm = req.body
 
-	const user = findUsersById(dataUsers, userId)
+	const user = findObjectById(dataUsers, userId)
 	Object.assign(user, dataFromForm)
 
 	log(`User id:${userId}, updated`, 'green')
