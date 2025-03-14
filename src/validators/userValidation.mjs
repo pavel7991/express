@@ -8,3 +8,12 @@ const userSchema = Joi.object({
 	website: Joi.string().optional().allow('', null)
 })
 
+const validateUserPost = (req, res, next) => {
+	const { error } = userSchema.validate(req.body)
+	if (error) {
+		res.status(400).send(error.details[0].message)
+	}
+	next()
+}
+
+export { validateUserPost }

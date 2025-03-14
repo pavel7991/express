@@ -7,6 +7,7 @@ import {
 	postAddNewUserHandler,
 	updateUserHandler
 } from '../controllers/users.mjs'
+import { validateUserPost } from '../validators/userValidation.mjs'
 
 const usersRouter = express.Router()
 
@@ -15,7 +16,7 @@ usersRouter.route('/')
 
 usersRouter.route('/add-new-user')
 	.get(getAddNewUserHandler)
-	.post(postAddNewUserHandler)
+	.post(validateUserPost, postAddNewUserHandler)
 
 usersRouter.route('/:userId')
 	.get(getUserByIdHandler)
