@@ -1,5 +1,5 @@
 import { counter, dataUsers } from '../data/users.mjs'
-import { log } from '../config/logger.mjs'
+import { log } from '../helpers/logger.mjs'
 import { findObjectById, removeObjectById } from '../utils/arrayUtils.mjs'
 
 // users

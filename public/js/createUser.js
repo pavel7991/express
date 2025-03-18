@@ -1,24 +1,26 @@
 import dataFormJson from './utils/dataFormJson.js'
 import { clearInputErrors, showValidationErrors } from './formValidation.js'
 
-const updateUserDataBtn = document.getElementById('updateUserData')
-const FormUser = document.getElementById('formUser')
+const createUserBtn = document.getElementById('createUserBtn')
+const FormUser = document.getElementById('formCreateUser')
 
-const updateDataUser = async () => {
+const createUser = async () => {
 
 	const url = window.location.pathname
 
 	try {
-		const res = await axios.put(url, dataFormJson(FormUser), {
+		const res = await axios.post(url, dataFormJson(FormUser), {
 			headers: {
 				'Content-Type': 'application/json'
 			}
 		})
 
 		if (res.status === 200) {
-			alert(res.data.message)
-			window.location.reload()
+			document.open()
+			document.write(res.data)
+			document.close()
 		}
+		
 	} catch (err) {
 		if (err.response.status === 400) {
 			showValidationErrors(err.response.data.message)
@@ -29,8 +31,8 @@ const updateDataUser = async () => {
 	}
 }
 
-updateUserDataBtn.addEventListener('click', (e) => {
+createUserBtn.addEventListener('click', (e) => {
 	e.preventDefault()
 	clearInputErrors()
-	updateDataUser().catch()
+	createUser().catch()
 })

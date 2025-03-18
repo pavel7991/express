@@ -7,8 +7,8 @@ import {
 	postAddNewUserHandler,
 	updateUserHandler
 } from '../controllers/users.mjs'
-import { validateUserPut } from '../validators/userValidation.mjs'
-import { errorValidationUser } from '../middleware/errorValidationUser.mjs'
+
+import { handleValidationErrors, validateUserData } from '../middleware/validateUserData.mjs'
 
 
 const usersRouter = express.Router()
@@ -18,13 +18,13 @@ usersRouter.route('/')
 
 usersRouter.route('/add-new-user')
 	.get(getAddNewUserHandler)
-	.post(validateUserPut, postAddNewUserHandler)
+	.post(validateUserData, postAddNewUserHandler)
 
 usersRouter.route('/:userId')
 	.get(getUserByIdHandler)
 	.delete(deleteUserByIdHandler)
-	.put(validateUserPut, updateUserHandler)
+	.put(validateUserData, updateUserHandler)
 
-usersRouter.use(errorValidationUser)
+usersRouter.use(handleValidationErrors)
 
 export default usersRouter

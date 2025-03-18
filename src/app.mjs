@@ -1,7 +1,8 @@
 import express from 'express'
 import router from './routes/index.mjs'
-import { log, logRequests } from './config/logger.mjs'
+import { log } from './helpers/logger.mjs'
 import { notFoundHandler } from './controllers/notFound.mjs'
+import { logRequests } from './middleware/logRequests.mjs'
 
 const PORT = 3000
 const app = express()

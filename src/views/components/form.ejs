@@ -1,21 +1,38 @@
 <div class="form-container">
-    <form action="/users/add-new-user" method="post" id="userForm">
-        
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="Pavel" required>
+    <form id="formCreateUser">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="exapmle@gmail.com" required>
+        <div class="input-group" id="name-input-group">
+            <label for="name">Name* :</label>
+            <input type="text" id="name" name="name" placeholder="Alice Johnson" />
+            <span class="err-msg"></span>
+        </div>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value="123456789" required>
+        <div class="input-group" id="email-input-group">
+            <label for="email">Email* :</label>
+            <input type="text" id="email" name="email" placeholder="exapmle.exapmle.com" />
+            <span class="err-msg"></span>
+        </div>
 
-        <label for="avatar">Avatar URL:</label>
-        <input type="url" id="avatar" name="avatar">
+        <div class="input-group" id="phone-input-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1-202-555-0176" />
+            <span class="err-msg"></span>
+        </div>
 
-        <label for="website">Website URL:</label>
-        <input type="url" id="website" name="website">
+        <div class="input-group" id="avatar-input-group">
+            <label for="avatar">Avatar:</label>
+            <input type="text" id="avatar" name="avatar" />
+            <span class="err-msg"></span>
+        </div>
 
-        <button type="submit">Submit</button>
+        <div class="input-group" id="website-input-group">
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website" />
+            <span class="err-msg"></span>
+        </div>
+
+        <button class="btn" id="createUserBtn">Add User</button>
     </form>
 </div>
+
+<script src="/js/createUser.js" type="module"></script>
