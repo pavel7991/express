@@ -15,9 +15,11 @@ app.use(express.json()) // Для JSON
 
 app.use(logRequests)
 
+
 app.use(router)
 
 app.use(notFoundHandler)
+
 
 app.listen(PORT, () => {
 	log(`Server is listening on port ${PORT}`, 'bgWhite')

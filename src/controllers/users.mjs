@@ -57,9 +57,3 @@ export const postAddNewUserHandler = (req, res) => {
 	log(`New user add! id:${newUser.id}, name:${newUser.name}`, 'green')
 	res.render('userSuccessAdd', { title: 'User added', currentPage: 'users', newUser })
 }
-
-
-
-
-
-

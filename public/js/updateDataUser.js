@@ -19,8 +19,12 @@ const updateDataUser = async (e) => {
 			window.location.reload()
 		}
 	} catch (err) {
-		console.error(err)
-		alert('Error updating user data')
+		if (err.status === 400) {
+			console.log(err.response.data.message)
+		} else {
+			console.error(err)
+			alert('Error update user')
+		}
 	}
 }
 
