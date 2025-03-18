@@ -1,5 +1,5 @@
-import dataFormJson from './utils/dataFormJson.js'
-import { clearInputErrors, showValidationErrors } from './formValidation.js'
+import dataFormJson from '../utils/dataFormJson.js'
+import { clearInputErrors, showValidationErrors } from '../validation/formValidation.js'
 
 const createUserBtn = document.getElementById('createUserBtn')
 const FormUser = document.getElementById('formCreateUser')
@@ -20,7 +20,7 @@ const createUser = async () => {
 			document.write(res.data)
 			document.close()
 		}
-		
+
 	} catch (err) {
 		if (err.response.status === 400) {
 			showValidationErrors(err.response.data.message)

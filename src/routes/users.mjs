@@ -10,7 +10,6 @@ import {
 
 import { handleValidationErrors, validateUserData } from '../middleware/validateUserData.mjs'
 
-
 const usersRouter = express.Router()
 
 usersRouter.route('/')

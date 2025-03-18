@@ -1,5 +1,5 @@
-import dataFormJson from './utils/dataFormJson.js'
-import { clearInputErrors, showValidationErrors } from './formValidation.js'
+import dataFormJson from '../utils/dataFormJson.js'
+import { clearInputErrors, showValidationErrors } from '../validation/formValidation.js'
 
 const updateUserDataBtn = document.getElementById('updateUserData')
 const FormUser = document.getElementById('formUser')
