@@ -1,107 +1,132 @@
-# Документация проекта
+# Express Project
 
-Этот проект представляет собой простое веб-приложение, разработанное с использованием **Express.js** и **EJS** для
-рендеринга шаблонов. Приложение позволяет управлять списком пользователей, поддерживая базовые CRUD-операции (создание,
-чтение, обновление, удаление). Для выполнения HTTP-запросов на стороне клиента используется библиотека **Axios**.
+Этот проект представляет собой веб-приложение, созданное с использованием **Express.js** и **EJS**. Приложение включает
+базовые функции CRUD (создание, чтение, обновление и удаление) для управления данными пользователей.
 
----
+## Установка
 
-## Основные технологии
+Для установки проекта выполните следующие шаги:
 
-- **Express.js**: Фреймворк для создания серверной части приложения.
-- **EJS**: Шаблонизатор для рендеринга HTML на стороне сервера.
-- **Axios**: Библиотека для выполнения HTTP-запросов на стороне клиента (используется для удаления и обновления данных
-  пользователей).
-- **Middleware**: Для обработки входящих запросов (логирование, парсинг JSON и URL-encoded данных).
+1. Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/pavel7991/express.git
+    ```
 
----
+2. Перейдите в директорию проекта:
+    ```bash
+    cd express
+    ```
+
+3. Установите зависимости:
+    ```bash
+    npm install
+    ```
+
+## Запуск
+
+Для запуска приложения используйте следующую команду:
+
+```bash
+npm start
+```
+
+Приложение будет запущено на `http://localhost:3000`.
 
 ## Структура проекта
 
-### Основные файлы
+- `public/` - Статические файлы (CSS, JavaScript).
+- `src/` - Исходный код приложения.
+    - `app.mjs` - Настройка и запуск Express-приложения.
+    - `routes/` - Маршрутизация.
+    - `controllers/` - Контроллеры для обработки запросов.
+    - `middleware/` - Промежуточные обработчики (middleware).
+    - `schemas/` - Схемы валидации данных.
+    - `helpers/` - Вспомогательные функции (например, логирование).
+    - `views/` - Шаблоны EJS.
 
-1. **`app.mjs`**  
-   Главный файл приложения, который настраивает Express.js, подключает маршруты и запускает сервер.
+## Маршрутизация
 
-2. **`controllers/users.mjs`**  
-   Содержит обработчики запросов для операций с пользователями (CRUD).
+### Пользователи
 
-3. **`routes/users.mjs`**  
-   Определяет маршруты для операций с пользователями.
+- `GET /users` - Получение списка пользователей.
+- `GET /users/add-new-user` - Форма для добавления нового пользователя.
+- `POST /users/add-new-user` - Добавление нового пользователя.
+- `GET /users/:userId` - Получение информации о пользователе по ID.
+- `DELETE /users/:userId` - Удаление пользователя по ID.
+- `PUT /users/:userId` - Обновление информации о пользователе по ID.
 
-4. **`views/`**  
-   Директория с шаблонами EJS для рендеринга страниц.
+## Миддлвары
 
-5. **`public/`**  
-   Директория для статических файлов (CSS, JavaScript, изображения).
+В проекте используются следующие миддлвары:
 
----
+- `logRequests` - Логирование запросов.
+- `validateUserData` - Валидация данных пользователя при добавлении и обновлении.
 
-## Описание функциональности
+## Валидация данных
 
-### Основные маршруты
-
-- **`GET /users`**  
-  Отображает список всех пользователей.  
-  Использует шаблон `views/users.ejs`.
-
-- **`GET /users/add-new-user`**  
-  Отображает форму для добавления нового пользователя.  
-  Использует шаблон `views/addNewUser.ejs`.
-
-- **`POST /users/add-new-user`**  
-  Обрабатывает данные формы и добавляет нового пользователя в список.  
-  После успешного добавления перенаправляет на страницу с подтверждением (`views/userSuccessAdd.ejs`).
-
-- **`GET /users/:userId`**  
-  Отображает подробную информацию о пользователе по его ID.  
-  Использует шаблон `views/user.ejs`.
-
-- **`PUT /users/:userId`**  
-  Обновляет данные пользователя по его ID.  
-  Использует **Axios** на стороне клиента для отправки запроса.
-
-- **`DELETE /users/:userId`**  
-  Удаляет пользователя по его ID.  
-  Использует **Axios** на стороне клиента для отправки запроса.
-
----
-
-## Использование EJS
-
-Шаблоны EJS используются для динамического рендеринга HTML-страниц. Например:
-
-- **`views/users.ejs`**: Отображает список всех пользователей.
-- **`views/user.ejs`**: Отображает подробную информацию о конкретном пользователе.
-- **`views/addNewUser.ejs`**: Форма для добавления нового пользователя.
-- **`views/userSuccessAdd.ejs`**: Страница с подтверждением успешного добавления пользователя.
-
----
-
-## Использование Axios
-
-На стороне клиента **Axios** используется для выполнения HTTP-запросов без перезагрузки страницы. Примеры использования:
-
-### Обновление данных пользователя
+Для валидации данных пользователя используется библиотека **Joi**. Схема валидации определена в
+`src/schemas/userSchema.mjs`.
 
 ```javascript
-const updateDataUser = async (e) => {
-	e.preventDefault()
-	const url = window.location.pathname
+import Joi from 'joi';
 
-	try {
-		const res = await axios.put(url, dataFormJson(FormUser), {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
+export const userSchema = Joi.object({
+	name: Joi.string().required().min(3).max(30),
+	email: Joi.string().required().email(),
+	phone: Joi.string().optional().allow('', null).pattern(/^\+?[0-9\s\-]{7,14}$/),
+	avatar: Joi.string().optional().allow('', null).uri(),
+	website: Joi.string().optional().allow('', null).uri()
+});
+```
 
-		if (res.status === 200) {
-			alert(res.data.message)
-			window.location.reload()
-		}
-	} catch (err) {
-		console.error(err)
-		alert('Error updating user data')
+## Шаблоны
+
+Приложение использует **EJS** для рендеринга HTML-шаблонов. Все шаблоны находятся в директории `src/views`.
+
+### Компоненты
+
+- `form.ejs` - Форма для создания и редактирования пользователей.
+- `userCard.ejs` - Карточка пользователя.
+
+### Основные страницы
+
+- `index.ejs` - Главная страница.
+- `users.ejs` - Страница списка пользователей.
+- `notFound.ejs` - Страница ошибки 404.
+
+## Логирование
+
+Для логирования используется кастомный логгер, который определен в `src/helpers/logger.mjs`.
+
+```javascript
+import chalk from 'chalk';
+
+export const log = (message, color = 'green') => {
+	console.log(chalk[color](message));
+};
+```
+
+## Валидация форм
+
+Для валидации форм используется JavaScript. Валидация определена в `public/js/validation/formValidation.js`.
+
+```javascript
+export const clearInputErrors = () => {
+	const errorMessages = document.querySelectorAll('.err-msg');
+	const inputGroups = document.querySelectorAll('.input-group');
+
+	errorMessages.forEach(errorMessage => errorMessage.textContent = '');
+	inputGroups.forEach(inputGroup => inputGroup.classList.remove('error'));
+};
+
+export const showValidationErrors = (errors) => {
+	for (const key in errors) {
+		const inputGroup = document.getElementById(`${key}-input-group`);
+		const errorSpan = inputGroup.querySelector('span');
+
+		inputGroup.classList.add('error');
+		errorSpan.textContent = errors[key];
 	}
-}
+};
+```
+
