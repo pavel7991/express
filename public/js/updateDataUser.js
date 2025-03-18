@@ -1,10 +1,11 @@
 import dataFormJson from './dataFormJson.js'
+import { clearInputErrors, showValidationErrors } from './formValidation.js'
 
 const updateUserDataBtn = document.getElementById('updateUserData')
 const FormUser = document.getElementById('formUser')
 
-const updateDataUser = async (e) => {
-	e.preventDefault()
+const updateDataUser = async () => {
+
 	const url = window.location.pathname
 
 	try {
@@ -19,8 +20,8 @@ const updateDataUser = async (e) => {
 			window.location.reload()
 		}
 	} catch (err) {
-		if (err.status === 400) {
-			console.log(err.response.data.message)
+		if (err.response.status === 400) {
+			showValidationErrors(err.response.data.message)
 		} else {
 			console.error(err)
 			alert('Error update user')
@@ -28,4 +29,9 @@ const updateDataUser = async (e) => {
 	}
 }
 
-updateUserDataBtn.addEventListener('click', updateDataUser)
+updateUserDataBtn.addEventListener('click', (e) => {
+	e.preventDefault()
+	clearInputErrors()
+	updateDataUser().catch()
+
+})

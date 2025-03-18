@@ -5,8 +5,8 @@ export const counter = {
 export const dataUsers = [
 	{
 		'id': 1,
-		'name': 'A',
-		'email': 'a',
+		'name': 'Alice Johnson',
+		'email': 'alice.johnson@example.com',
 		'phone': '+1-202-555-0114',
 		'avatar': 'https://randomuser.me/api/portraits/women/1.jpg',
 		'website': 'https://alicejohnson.com'

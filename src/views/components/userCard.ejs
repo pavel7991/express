@@ -5,26 +5,33 @@
     </div>
 
     <form id="formUser">
-        <div>
+        <div class="input-group" id="name-input-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<%= userData.name %>" />
+            <span class="err-msg"></span>
         </div>
-        <div>
+
+        <div class="input-group" id="email-input-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<%= userData.email %>" />
+            <input type="text" id="email" name="email" value="<%= userData.email %>" />
+            <span class="err-msg"></span>
         </div>
-        <div>
+        <div class="input-group" id="phone-input-group">
             <label for="phone">Phone:</label>
             <input type="text" id="phone" name="phone" value="<%= userData.phone %>" />
+            <span class="err-msg"></span>
         </div>
-        <div>
-            <label for="website">Avatar URL:</label>
-            <input type="url" id="avatar" name="avatar" value="<%= userData.avatar %>" />
+        <div class="input-group" id="avatar-input-group">
+            <label for="avatar">Avatar URL:</label>
+            <input type="text" id="avatar" name="avatar" value="<%= userData.avatar %>" />
+            <span class="err-msg"></span>
         </div>
-        <div>
+        <div class="input-group" id="website-input-group">
             <label for="website">Website:</label>
-            <input type="url" id="website" name="website" value="<%= userData.website %>" />
+            <input type="text" id="website" name="website" value="<%= userData.website %>" />
+            <span class="err-msg"></span>
         </div>
+
         <div class="user-card__panel-buttons">
             <div>
                 <button class="btn" id="deleteUserData">DELETE</button>
@@ -39,20 +46,3 @@
     <script src="/js/deleteDataUser.js" type="module"></script>
     <script src="/js/updateDataUser.js" type="module"></script>
 </div>
-
-<script>
-	function updateItem() {
-		const itemId = 1; // ID элемента, который нужно обновить
-		const newName = 'Updated Item'; // Новое значение
-
-		axios.put(`/items/${itemId}`, { name: newName })
-			.then(response => {
-				console.log('Ответ сервера:', response.data);
-				alert('Элемент успешно обновлен: ' + response.data.updatedItem.name);
-			})
-			.catch(error => {
-				console.error('Ошибка:', error);
-				alert('Произошла ошибка при обновлении элемента');
-			});
-	}
-</script>
