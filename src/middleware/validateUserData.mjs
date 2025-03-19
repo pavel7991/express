@@ -1,5 +1,5 @@
 import { userSchema } from '../schemas/userSchema.mjs'
-import { log } from '../helpers/logger.mjs'
+import { log } from '../utils/logger.mjs'
 
 const validateUserData = (req, res, next) => {
 	const { error } = userSchema.validate(req.body, { abortEarly: false })

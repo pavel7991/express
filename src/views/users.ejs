@@ -9,7 +9,7 @@
     <% usersList.map((user, index) => { %>
         <div class="row-user">
             <span><%= ++index %>.</span>
-            <% const avatarImg = (user.avatar != '' ? user.avatar : '/image/no-image.jpeg') %>
+            <% const avatarImg = (user.avatar != '' ? user.avatar : '/images/no-image.jpeg') %>
             <img src="<%= avatarImg %>" alt="user.name" class="photo-sm">
             <p><a href="/users/<%= user.id %>" class="row-user__name"><%= user.name %></a></p>
             <a href="/users/<%= user.id %>" class="row-user__view-profile">View Profile</a>

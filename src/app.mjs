@@ -1,6 +1,6 @@
 import express from 'express'
 import router from './routes/index.mjs'
-import { log } from './helpers/logger.mjs'
+import { log } from './utils/logger.mjs'
 import { notFoundHandler } from './controllers/notFound.mjs'
 import { logRequests } from './middleware/logRequests.mjs'
 
@@ -16,11 +16,8 @@ app.use(express.json()) // Для JSON
 
 app.use(logRequests)
 
-
 app.use(router)
-
 app.use(notFoundHandler)
-
 
 app.listen(PORT, () => {
 	log(`Server is listening on port ${PORT}`, 'bgWhite')

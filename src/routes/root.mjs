@@ -4,6 +4,7 @@ import { getRootHandler } from '../controllers/root.mjs'
 const rootRouter = express.Router()
 
 rootRouter.route('/')
-  .get(getRootHandler)
+	.get(getRootHandler)
+
 
 export default rootRouter
